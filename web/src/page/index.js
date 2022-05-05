@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Alert} from 'antd';
+import {Button, notification} from 'antd';
 import axios from "axios";
 import {service} from "../config";
 
@@ -12,26 +12,24 @@ const form = {
 const input = {
     fontSize: '24px', margin: '10px auto', textAlign: 'center'
 }
-const message = {
-    position: 'fixed',
-    width: '300px',
-    right: '20px',
-    top: '20px'
-}
+const openNotification = (message, description) => {
+    notification.open({
+        message: message,
+        description: description,
+        duration: 2
+    });
+};
 export default class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message_type: 'success',
-            message_content: ''
+            email: '',
+            password: ''
         };
     }
 
     render() {
         return (<>
-            <div style={message}>
-                <Alert message={this.state.message_content} type={this.state.message_type} showIcon closable/>
-            </div>
             <h1 style={title}>Dokemon 豆可梦</h1>
             <div style={form}>
                 <div>
@@ -55,9 +53,11 @@ export default class Index extends React.Component {
     token = () => {
         const email = this.state.email;
         const password = this.state.password;
+        if (email.trim() === '' || password.trim() === '')
+            return openNotification('提示：', '请输入您的邮箱和密码！');
         axios.post(service + 'token', {email: email, password: password}).then(
             (res) => {
-                console.log(res);
+                openNotification('登录：', res.data.message)
             }
         )
     }
