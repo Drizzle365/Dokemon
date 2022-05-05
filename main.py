@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from data.user import User
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from data.model import UserReq
 
 user = User()
 
@@ -22,11 +22,6 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message": "Dokemon 服务端运行中"}
-
-
-class UserReq(BaseModel):
-    email: str
-    password: str
 
 
 @app.post("/token")
