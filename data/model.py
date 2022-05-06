@@ -7,5 +7,6 @@ class UserReq(BaseModel):
 
 
 class RoleReq(BaseModel):
+    uid: int
     name: str
     sex: str

@@ -3,10 +3,8 @@ import {Button, notification} from 'antd';
 import axios from "axios";
 import {service} from "../config";
 import cookie from "react-cookies";
+import Title from "../component/title";
 
-const title = {
-    color: 'white', backgroundColor: '#6060ba', textAlign: 'center', padding: '10px'
-}
 const form = {
     marginTop: '80px', textAlign: 'center'
 }
@@ -31,7 +29,7 @@ export default class Index extends React.Component {
 
     render() {
         return (<>
-            <h1 style={title}>Dokemon 豆可梦</h1>
+            <Title></Title>
             <div style={form}>
                 <div>
                     <span>邮箱：</span>
@@ -41,7 +39,7 @@ export default class Index extends React.Component {
                 </div>
                 <div>
                     <span>密码：</span>
-                    <input style={input} type={"text"} onChange={(e) => {
+                    <input style={input} type={"password"} onChange={(e) => {
                         this.setState({password: e.target.value})
                     }}/>
                 </div>
@@ -61,7 +59,7 @@ export default class Index extends React.Component {
                 openNotification('登录：', res.data.message)
                 if (res.data.code === 0) {
                     cookie.save('token', res.data.token)
-                    console.log(res.data.token)
+                    window.location.href = '/jump'
                 }
             }
         )
