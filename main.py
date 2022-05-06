@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from data.user import User
 from fastapi.middleware.cors import CORSMiddleware
 from data.model import UserReq
@@ -7,6 +8,9 @@ from routers import role
 user = User()
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
