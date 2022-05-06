@@ -2,12 +2,15 @@ from fastapi import FastAPI
 from data.user import User
 from fastapi.middleware.cors import CORSMiddleware
 from data.model import UserReq
+from routers import role
 
 user = User()
 
 app = FastAPI()
 origins = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
+
 ]
 
 app.add_middleware(
@@ -17,6 +20,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(role.router, prefix="/role")
 
 
 @app.get("/")

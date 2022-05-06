@@ -2,6 +2,7 @@ import React from "react";
 import {Button, notification} from 'antd';
 import axios from "axios";
 import {service} from "../config";
+import cookie from "react-cookies";
 
 const title = {
     color: 'white', backgroundColor: '#6060ba', textAlign: 'center', padding: '10px'
@@ -58,6 +59,10 @@ export default class Index extends React.Component {
         axios.post(service + 'token', {email: email, password: password}).then(
             (res) => {
                 openNotification('登录：', res.data.message)
+                if (res.data.code === 0) {
+                    cookie.save('token', res.data.token)
+                    console.log(res.data.token)
+                }
             }
         )
     }
