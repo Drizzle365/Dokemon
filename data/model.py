@@ -1,12 +1,13 @@
 from pydantic import BaseModel
 
 
-class UserReq(BaseModel):
+class UserModel(BaseModel):
     email: str
     password: str
 
 
-class RoleReq(BaseModel):
+class CreateRoleModel(BaseModel):
     uid: int
     name: str
     sex: str
+    dokemon: int

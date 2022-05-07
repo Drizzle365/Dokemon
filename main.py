@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from data.user import User
 from fastapi.middleware.cors import CORSMiddleware
-from data.model import UserReq
+from data.model import UserModel
 from routers import role
 
 user = User()
@@ -34,7 +34,7 @@ async def root():
 
 
 @app.post("/token")
-def token(req: UserReq):
+def token(req: UserModel):
     res = user.token(req.email, req.password)
     if res['code'] == 0:
         pass

@@ -6,6 +6,7 @@ import cookie from "react-cookies";
 export default function Jump() {
     axios.get(service + 'role/get?uid=' + cookie.load('token')).then(
         (res) => {
+            console.log(res)
             if (res.data.code === 0) {
                 window.location.href = '/game'
             } else {

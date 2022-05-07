@@ -8,5 +8,5 @@ class Role:
     def get(self, uid: int):
         return self.db.table('role').where('id = %s' % uid).item()
 
-    def creat(self, **data):
+    def create(self, **data):
         return self.db.table('role').insert(**data)
