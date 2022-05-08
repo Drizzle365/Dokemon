@@ -7,7 +7,6 @@ class UserModel(BaseModel):
 
 
 class CreateRoleModel(BaseModel):
-    uid: int
     name: str
     sex: str
     dokemon: int

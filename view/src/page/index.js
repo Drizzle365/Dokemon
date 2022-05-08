@@ -56,7 +56,7 @@ export default class Index extends React.Component {
             return openNotification('提示：', '请输入您的邮箱和密码！');
         axios.post(service + 'token', {email: email, password: password}).then(
             (res) => {
-                openNotification('登录：', res.data.message)
+                openNotification('登录：', res.data.msg)
                 if (res.data.code === 0) {
                     cookie.save('token', res.data.token)
                     window.location.href = '/jump'

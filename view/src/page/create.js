@@ -12,13 +12,22 @@ const openNotification = (message, description) => {
         message: message, description: description, duration: 2
     });
 };
+
 const dokemon = [0, '妙蛙种子', 0, 0, '小火龙', 0, 0, '杰尼龟']
 export default class Create extends React.Component {
     constructor(props) {
         super(props);
+        axios.get(service + 'role/?token=' + cookie.load('token')).then(
+        (res) => {
+            if (res.data.code === 0) {
+                window.location.href = '/game'
+            }
+        }
+    )
         this.state = {
             step: 0, name: '', sex: '男', dokemon: 1
         };
+
     }
 
     render() {
@@ -86,7 +95,8 @@ export default class Create extends React.Component {
                         <img src={service + 'static/img/dmbs.png'} alt={'大木博士'} width={'100px'}/>
                         <Card title="年轻的训练师，你好：" bordered={false} style={{textAlign: 'left'}}>
                             我是宝可梦图鉴的创作者之一，同时也将会在豆可梦的世界指导训练师们变成世界一流的豆可梦训练家！
-                            你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{dokemon[this.state.dokemon]}</span>，他将会在接下来很长一段时间内跟随着你，直到你变得足够强大，如果你已经准备好了，下面开始我们的战斗教学吧！
+                            你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{dokemon[this.state.dokemon]}</span>，
+                            他将会在接下来很长一段时间内跟随着你，直到你变得足够强大，如果你已经准备好了，等会去豆可梦研究所找我叭！
                         </Card>
                     </TabPane>
                 </Tabs>
@@ -119,8 +129,8 @@ export default class Create extends React.Component {
     }
 
     create() {
-        axios.post(service + 'role/create', {
-            uid: cookie.load('token'), name: this.state.name, sex: this.state.sex, dokemon: this.state.dokemon
+        axios.post(service + 'role/create?token=' + cookie.load('token'), {
+            name: this.state.name, sex: this.state.sex, dokemon: this.state.dokemon
         }).then((r) => {
             console.log(r)
         })

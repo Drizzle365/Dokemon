@@ -14,7 +14,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-
 ]
 
 app.add_middleware(
@@ -35,7 +34,4 @@ async def root():
 
 @app.post("/token")
 def token(req: UserModel):
-    res = user.token(req.email, req.password)
-    if res['code'] == 0:
-        pass
-    return res
+    return user.token(req.email, req.password)

@@ -4,7 +4,7 @@ import {service} from "./config";
 import cookie from "react-cookies";
 
 export default function Jump() {
-    axios.get(service + 'role/get?uid=' + cookie.load('token')).then(
+    axios.get(service + 'role/?token=' + cookie.load('token')).then(
         (res) => {
             console.log(res)
             if (res.data.code === 0) {

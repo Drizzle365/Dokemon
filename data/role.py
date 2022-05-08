@@ -6,7 +6,7 @@ class Role:
         self.db = MySql()
 
     def get(self, uid: int):
-        return self.db.table('role').where('id = %s' % uid).item()
+        return self.db.table('role').where('uid = %s' % uid).item()
 
     def create(self, **data):
         return self.db.table('role').insert(**data)
