@@ -18,12 +18,12 @@ export default class Create extends React.Component {
     constructor(props) {
         super(props);
         axios.get(service + 'role/?token=' + cookie.load('token')).then(
-        (res) => {
-            if (res.data.code === 0) {
-                window.location.href = '/game'
+            (res) => {
+                if (res.data.code === 0) {
+                    this.props.navigate('/game')
+                }
             }
-        }
-    )
+        )
         this.state = {
             step: 0, name: '', sex: '男', dokemon: 1
         };
@@ -132,8 +132,9 @@ export default class Create extends React.Component {
         axios.post(service + 'role/create?token=' + cookie.load('token'), {
             name: this.state.name, sex: this.state.sex, dokemon: this.state.dokemon
         }).then((r) => {
-            console.log(r)
+            openNotification('通知：', '你的档案已经录入在豆可梦训练师协会啦，开始您的冒险之旅吧！')
+            this.props.navigate('/game')
         })
-        openNotification('通知：', '你的档案已经录入在豆可梦训练师协会啦，开始您的冒险之旅吧！')
+
     }
 }
