@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Spin} from 'antd';
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class Game extends React.Component {
     }
 
     render() {
-        return <h1>2</h1>
+        return <h1 style={{textAlign: 'center'}}><Spin/> 开发中</h1>
     }
 
 }
