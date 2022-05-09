@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from 'antd';
+import './game.css'
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -9,8 +10,8 @@ export default class Game extends React.Component {
 
     render() {
         return (
-            <div style={{textAlign: 'center'}}>
-                <div>
+            <div className={'game'}>
+                <div className={'top-nav'}>
                     <Button>地图</Button>
                     <Button>设施</Button>
                     <Button>任务</Button>
@@ -23,5 +24,4 @@ export default class Game extends React.Component {
             </div>
         )
     }
-
 }
