@@ -2,9 +2,20 @@
     height: 100vh;
     background-image: url("http://127.0.0.1:8000/static/img/background.png");
     text-align: center;
-    padding: 20px;
+    padding: 40px;
+
 }
 
+.info {
+
+}
+.main{
+    width:600px;
+    margin:0 auto;
+    background-color: rgba(240, 248, 255, 0.81);
+    border-radius: 20px;
+    min-height: 600px;
+}
 .top-nav {
-    
+
 }
