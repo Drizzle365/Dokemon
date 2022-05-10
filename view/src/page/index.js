@@ -70,7 +70,7 @@ export default class Index extends React.Component {
         axios.get(service + 'role/?token=' + token).then(
             (res) => {
                 if (res.data.code === 0) {
-                    this.props.navigate('/game')
+                    this.props.navigate('/game/map')
                 } else {
                     this.props.navigate('/create')
                 }

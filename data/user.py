@@ -10,7 +10,7 @@ class User:
         res = self.db.table('user').where("email = '%s'" % email).item()
         if res:
             if auth.check_password(password, res['password']):
-                return {'code': 0, 'msg': '登录成功！', 'token': auth.get_token(data={'uid': res['id']})}
+                return {'code': 0, 'msg': '登录成功！', 'token': auth.get_token(data={'uid': res['uid']})}
             else:
                 return {'code': 1, 'msg': '登录失败，请检查您的邮箱或者密码是否正确！'}
         else:

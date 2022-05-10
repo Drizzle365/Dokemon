@@ -1,14 +1,15 @@
-from fastapi import APIRouter, Depends, Cookie
+from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordBearer
-from data.role import Role
-from data.model import CreateRoleModel
-from data.json import JsonSelect
+
 from data.auth import get_user
+from data.json import JsonSelect
+from data.model import CreateRoleModel
+from data.role import Role
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter()
 role = Role()
-js = JsonSelect()
+js = JsonSelect('dokemon')
 
 
 @router.get('/')
