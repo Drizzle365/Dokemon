@@ -8,7 +8,7 @@ class MySql:
         self.Where: str = '1 = 1'
         self.Order: str = NULL
         self.db = connect(host='127.0.0.1', user='root',
-                          password='root', db='rokemon', port=3306)
+                          password='root', db='dokemon', port=3306)
         self.cursor = self.db.cursor(cursors.DictCursor)
 
     def finish(self):
@@ -23,7 +23,7 @@ class MySql:
             self.db.ping()
         except:
             self.db = connect(host='127.0.0.1', user='root',
-                              password='root', db='rokemon', port=3306)
+                              password='root', db='dokemon', port=3306)
 
     def table(self, table: str):
         self.Table = table
