@@ -1,6 +1,7 @@
+// noinspection ES6CheckImport
+
 import React from 'react';
 import Index from "./page";
-// noinspection ES6CheckImport
 import {Routes, Route} from "react-router-dom";
 import Create from "./page/create";
 import Game from "./page/game";

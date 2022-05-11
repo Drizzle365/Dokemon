@@ -1,7 +1,9 @@
+// noinspection ES6CheckImport
+
 import React from "react";
 import {Button, Avatar, Tag} from 'antd';
 import './game.css'
-import {service} from "../config";
+import {SERVICE_IMG} from "../config";
 import {Outlet, useNavigate} from "react-router-dom";
 
 export default () => {
@@ -10,7 +12,7 @@ export default () => {
         <div className={'game'}>
             <div className={'main'}>
                 <div className={'info'}>
-                    <div><Avatar src={service + 'static/img/logo.png'} size={"large"}
+                    <div><Avatar src={SERVICE_IMG + 'logo.png'} size={"large"}
                                  style={{margin: '-20px 0 5px 0'}}></Avatar></div>
                     <div style={{marginBottom: '5px'}}>
                         <Tag style={{marginLeft: '10px'}} color="#f50">Drizzle</Tag>

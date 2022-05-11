@@ -1,7 +1,9 @@
+// noinspection ES6CheckImport
+
 import React, {useState} from "react";
 import {Button, notification} from 'antd';
 import axios from "axios";
-import {service} from "../config";
+import {SERVICE} from "../config";
 import cookie from "react-cookies";
 import Title from "../component/title";
 import {useNavigate} from "react-router-dom";
@@ -28,7 +30,7 @@ export default () => {
     const token = () => {
         if (email.trim() === '' || password.trim() === '')
             return openNotification('提示：', '请输入您的邮箱和密码！');
-        axios.post(service + 'token', {email: email, password: password}).then(
+        axios.post(SERVICE + 'token', {email: email, password: password}).then(
             (res) => {
                 openNotification('登录：', res.data['msg'])
                 if (res.data.code === 0) {
@@ -40,7 +42,7 @@ export default () => {
     }
 
     const jump = (token) => {
-        axios.get(service + 'role/?token=' + token).then(
+        axios.get(SERVICE + 'role/?token=' + token).then(
             (res) => {
                 if (res.data.code === 0) {
                     navigate('/game/map')

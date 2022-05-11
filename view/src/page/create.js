@@ -1,7 +1,9 @@
+// noinspection ES6CheckImport
+
 import React, {useState} from "react";
 import {Steps, Button, Tabs, Input, Radio, notification, Card} from 'antd';
 import Title from "../component/title";
-import {service} from "../config";
+import {SERVICE, SERVICE_IMG} from "../config";
 import axios from "axios";
 import cookie from "react-cookies";
 import {useNavigate} from "react-router-dom";
@@ -21,7 +23,7 @@ export default () => {
     const [name, setName] = useState('');
     const [sex, setSex] = useState('男');
     const [dokemon, setDokemon] = useState(1);
-    axios.get(service + 'role/?token=' + cookie.load('token')).then(
+    axios.get(SERVICE + 'role/?token=' + cookie.load('token')).then(
         (res) => {
             if (res.data.code === 0) {
                 navigate('/game')
@@ -42,7 +44,7 @@ export default () => {
         }
     }
     const create = () => {
-        axios.post(service + 'role/create?token=' + cookie.load('token'), {
+        axios.post(SERVICE + 'role/create?token=' + cookie.load('token'), {
             name: name, sex: sex, dokemon: dokemon
         }).then(() => {
             openNotification('通知：', '你的档案已经录入在豆可梦训练师协会啦，开始您的冒险之旅吧！')
@@ -63,11 +65,11 @@ export default () => {
                         setName(e.target.value)
                     }} placeholder="训练师姓名"></Input>
                     <div style={{marginTop: '20px'}}>
-                        <img src={service + 'static/img/boy.png'} width={'100px'} height={'240px'} alt={'男孩'}
+                        <img src={SERVICE_IMG + 'boy.png'} width={'100px'} height={'240px'} alt={'男孩'}
                              onClick={() => {
                                  setSex('男')
                              }}></img>
-                        <img src={service + 'static/img/girl.png'} width={'100px'} height={'240px'} alt={'女孩'}
+                        <img src={SERVICE_IMG + 'girl.png'} width={'100px'} height={'240px'} alt={'女孩'}
                              onClick={() => {
                                  setSex('女')
                              }}></img>
@@ -83,15 +85,15 @@ export default () => {
                 </TabPane>
                 <TabPane key="1">
                     <div style={{marginTop: '20px'}}>
-                        <img style={{margin: '40px'}} src={service + 'static/img/pokemon/1.gif'} alt={'妙蛙种子'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/1.gif'} alt={'妙蛙种子'}
                              onClick={() => {
                                  setDokemon(1)
                              }}></img>
-                        <img style={{margin: '40px'}} src={service + 'static/img/pokemon/4.gif'} alt={'小火龙'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/4.gif'} alt={'小火龙'}
                              onClick={() => {
                                  setDokemon(4)
                              }}></img>
-                        <img style={{margin: '40px'}} src={service + 'static/img/pokemon/7.gif'} alt={'杰尼龟'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/7.gif'} alt={'杰尼龟'}
                              onClick={() => {
                                  setDokemon(7)
                              }}></img>
@@ -111,7 +113,7 @@ export default () => {
                     </Radio.Group>
                 </TabPane>
                 <TabPane key="2">
-                    <img src={service + 'static/img/dmbs.png'} alt={'大木博士'} width={'100px'}/>
+                    <img src={SERVICE_IMG + 'dmbs.png'} alt={'大木博士'} width={'100px'}/>
                     <Card title="年轻的训练师，你好：" bordered={false} style={{textAlign: 'left'}}>
                         我是宝可梦图鉴的创作者之一，同时也将会在豆可梦的世界指导训练师们变成世界一流的豆可梦训练家！
                         你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{DOKEMON[dokemon]}</span>，

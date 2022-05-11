@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import {service} from "../config";
+import {SERVICE} from "../config";
 import cookie from "react-cookies";
 
 export default class Map extends React.Component {
@@ -39,9 +39,9 @@ export default class Map extends React.Component {
     }
 
     get_info() {
-        axios.get(service + 'role?token=' + cookie.load('token')).then(r => {
+        axios.get(SERVICE + 'role?token=' + cookie.load('token')).then(r => {
             this.setState({role: r.data.role})
-            axios.get(service + 'map?mid=' + this.state.role.map).then(r => {
+            axios.get(SERVICE + 'map?mid=' + this.state.role.map).then(r => {
                 this.setState({map: r.data})
                 console.log(this.state.map.name)
             })
