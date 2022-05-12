@@ -22,7 +22,8 @@
 
 #### 启动服务端
 
-在根目录执行 `uvicorn main:app --reload`  
+
+在根目录执行 `uvicorn main:app --reload` 
 默认地址：http://127.0.0.1:8000
 
 #### 启动React
