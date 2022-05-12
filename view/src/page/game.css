@@ -3,19 +3,49 @@
     background-image: url("http://127.0.0.1:8000/static/img/background.png");
     text-align: center;
     padding: 40px;
-
+    width: 100%;
+    overflow: hidden;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .info {
 
 }
-.main{
-    width:600px;
-    margin:0 auto;
+
+.main {
+    width: 550px;
+    margin: 30px auto;
     background-color: rgba(240, 248, 255, 0.81);
     border-radius: 20px;
-    min-height: 600px;
+    min-height: 350px;
 }
-.top-nav {
 
+.buttonImg {
+    height: 64px;
+    background-color: rgba(240, 248, 255, 0.68);
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.buttonImg:hover {
+    background-color: rgba(240, 248, 255, 0.68);
+}
+
+.buttonImg:active {
+    background-color: rgba(234, 229, 232, 0.51);
+}
+
+.chat {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 20px auto;
+    height: 100px;
+    background-color: rgba(191, 253, 243, 0.34);
+    border-radius: 5px;
+    width: 80%;
 }

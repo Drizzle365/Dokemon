@@ -9,7 +9,7 @@ export default () => {
         designation: '',
         diamond: '',
         map: '',
-        name: 'a',
+        name: '',
         sex: '',
         uid: ''
     });
@@ -30,6 +30,8 @@ export default () => {
     return (
         <div>
             <h2 style={{textAlign: 'left'}}>{map.name}</h2>
+            <h2 style={{textAlign: 'left'}}>{role.name}</h2>
+
         </div>
     )
 

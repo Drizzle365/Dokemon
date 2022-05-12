@@ -7,6 +7,7 @@ import Create from "./page/create";
 import Game from "./page/game";
 import Map from "./page/map";
 import Npc from "./page/npc";
+import Announcement from "./page/announcement";
 
 const Router = () => {
 
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/game" element={<Game/>}>
             <Route path="map" element={<Map/>}></Route>
             <Route path="npc" element={<Npc/>}></Route>
+            <Route path="announcement" element={<Announcement/>}></Route>
         </Route>
     </Routes>)
 }
