@@ -83,7 +83,7 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
-        res = {'data': self.cursor.fetchall(), 'count': count}
+        res = {'model': self.cursor.fetchall(), 'count': count}
         return res
 
     def insert(self, **field) -> int:

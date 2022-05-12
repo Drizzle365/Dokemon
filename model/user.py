@@ -1,5 +1,5 @@
-from data.mysql import MySql
-from data import auth
+from model.mysql import MySql
+from model import auth
 
 
 class User:

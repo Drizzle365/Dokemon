@@ -3,7 +3,7 @@ import json
 
 class JsonSelect:
     def __init__(self, data: str):
-        f = open('data/json/%s.json' % data, 'r', encoding='utf-8')
+        f = open('model/json/%s.json' % data, 'r', encoding='utf-8')
         self.data = json.load(f)
 
     def get_dokemon(self, did: int) -> dict:

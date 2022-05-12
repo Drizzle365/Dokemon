@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from data.user import User
+from model.user import User
 from fastapi.middleware.cors import CORSMiddleware
-from data.model import UserModel
+from model.model import UserModel
 from routers import role
 from routers import map
 

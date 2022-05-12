@@ -1,4 +1,4 @@
-from data.mysql import MySql
+from model.mysql import MySql
 
 
 class Dokemon:

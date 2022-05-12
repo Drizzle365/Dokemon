@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from data.dokemon import Dokemon
+from model.dokemon import Dokemon
 
 router = APIRouter()
 dokemon = Dokemon()

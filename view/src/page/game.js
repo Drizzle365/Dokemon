@@ -2,12 +2,28 @@
 
 import React from "react";
 import './game.css'
-import {SERVICE_IMG} from "../config";
+import {SERVICE, SERVICE_IMG} from "../config";
 import {Outlet, useNavigate} from "react-router-dom";
-import {Button} from "antd";
+import {Button, notification} from "antd";
+import axios from "axios";
+import cookie from "react-cookies";
 
+const openNotification = (message, description) => {
+    notification.open({
+        message: message,
+        description: description,
+        duration: 2
+    });
+};
 export default () => {
     const navigate = useNavigate()
+    const sign = () => {
+        axios.get(SERVICE + 'role/sign?token=' + cookie.load('token')).then(
+            r => {
+                openNotification('签到：', r.data['msg'])
+            }
+        )
+    }
     return (
         <div className={'game'}>
             <div>
@@ -18,7 +34,7 @@ export default () => {
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/cj.png'} alt={'抽奖'}/>
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/fl.png'} alt={'福利'}/>
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/jj.png'} alt={'竞技'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/qd.png'} alt={'签到'}/>
+                <img onClick={sign} className={'buttonImg'} src={SERVICE_IMG + 'ui/qd.png'} alt={'签到'}/>
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/rw.png'} alt={'任务'}/>
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/sd.png'} alt={'商店'}/>
             </div>

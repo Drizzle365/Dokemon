@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordBearer
-
-from data.auth import get_user
-from data.json import JsonSelect
-from data.model import CreateRoleModel
-from data.role import Role
+import datetime
+from model.auth import get_user
+from model.json import JsonSelect
+from model.model import CreateRoleModel
+from model.role import Role
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter()
@@ -47,3 +47,8 @@ def create(req: CreateRoleModel, user=Depends(get_user)):
     del dm['SP']
     role.db.table('dokemon').insert(uid=user['uid'], **dm)
     return {'code': 0}
+
+
+@router.get('/sign')
+def sign(user=Depends(get_user)):
+    return role.sign(user['uid'])

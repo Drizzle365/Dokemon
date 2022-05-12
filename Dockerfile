@@ -1,6 +1,6 @@
 FROM python:3.10
 
-COPY  data data
+COPY  model data
 COPY routers routers
 COPY static static
 COPY main.py main.py

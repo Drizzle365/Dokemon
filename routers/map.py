@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from data.json import JsonSelect
+from model.json import JsonSelect
 
 router = APIRouter()
 js = JsonSelect('map')
