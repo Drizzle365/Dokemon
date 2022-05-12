@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import {SERVICE} from "../config";
+import {SERVICE, SERVICE_IMG} from "../config";
 import cookie from "react-cookies";
+import {Link} from "react-router-dom";
 
 export default () => {
     const [role, setRole] = useState({
@@ -14,7 +15,9 @@ export default () => {
         uid: ''
     });
     const [map, setMap] = useState({
-        name: ''
+        name: '',
+        depiction: '',
+        npc: ''
     })
     const getInfo = () => {
         axios.get(SERVICE + 'role?token=' + cookie.load('token')).then(r => {
@@ -29,10 +32,10 @@ export default () => {
     }, [])
     return (
         <div>
-            <h2 style={{textAlign: 'left'}}>{map.name}</h2>
-            <h2 style={{textAlign: 'left'}}>{role.name}</h2>
-
+            <h2>{map.name}</h2>
+            <p>{map.depiction}</p>
+            <h2>这里有:</h2>
+            <h3 className={'link'}><img style={{height: '25px', margin: '2px'}} alt={'!'} src={SERVICE_IMG + 'ui/!.png'}/>{map.npc}</h3>
         </div>
     )
-
 }

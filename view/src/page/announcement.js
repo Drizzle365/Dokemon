@@ -1,5 +1,10 @@
 import React from "react";
 
 export default () => {
-    return <h1>嘿嘿</h1>
+    return (
+        <>
+            <h1>游戏公告</h1>
+            <p>Dokemon 正在开发中</p>
+        </>
+    )
 }

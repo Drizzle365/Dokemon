@@ -49,3 +49,10 @@
     border-radius: 5px;
     width: 80%;
 }
+
+.link {
+    text-decoration: underline;
+    color: rgba(255, 153, 0, 0.82);
+    cursor: pointer;
+    display: inline;
+}
