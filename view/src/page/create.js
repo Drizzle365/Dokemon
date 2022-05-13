@@ -26,7 +26,7 @@ export default () => {
     axios.get(SERVICE + 'role/?token=' + cookie.load('token')).then(
         (res) => {
             if (res.data.code === 0) {
-                navigate('/game')
+                navigate('/game/map')
             }
         }
     )
@@ -48,7 +48,7 @@ export default () => {
             name: name, sex: sex, dokemon: dokemon
         }).then(() => {
             openNotification('通知：', '你的档案已经录入在豆可梦训练师协会啦，开始您的冒险之旅吧！')
-            navigate('/game')
+            navigate('/game/map')
         })
     }
     return (<>

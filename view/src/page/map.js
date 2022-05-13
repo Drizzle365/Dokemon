@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {SERVICE, SERVICE_IMG} from "../config";
 import cookie from "react-cookies";
-import {Link} from "react-router-dom";
 
 export default () => {
     const [role, setRole] = useState({
