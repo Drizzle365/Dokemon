@@ -11,3 +11,6 @@ class JsonSelect:
 
     def get_map(self, mid: int) -> dict:
         return self.data['Map'][mid - 1]
+
+    def get_npc(self, nid: int) -> dict:
+        return self.data['Npc'][nid - 1]

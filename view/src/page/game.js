@@ -44,7 +44,7 @@ export default () => {
             <div>
                 <Button onClick={() => {
                     navigate('/game/map')
-                }}>地图</Button>
+                }}>返回地图</Button>
                 <Button>我的豆可梦</Button>
             </div>
             <div className={'chat'}>

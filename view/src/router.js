@@ -16,7 +16,7 @@ const Router = () => {
         <Route path="/create" element={<Create/>}/>
         <Route path="/game" element={<Game/>}>
             <Route path="map" element={<Map/>}></Route>
-            <Route path="npc" element={<Npc/>}></Route>
+            <Route path="npc/:nid" element={<Npc/>}></Route>
             <Route path="announcement" element={<Announcement/>}></Route>
         </Route>
     </Routes>)

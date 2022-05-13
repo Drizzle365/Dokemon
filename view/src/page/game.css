@@ -20,6 +20,7 @@
     background-color: rgba(240, 248, 255, 0.81);
     border-radius: 20px;
     min-height: 350px;
+    position: relative;
 }
 
 .buttonImg {
@@ -55,4 +56,44 @@
     color: rgba(255, 153, 0, 0.82);
     cursor: pointer;
     display: inline;
+}
+
+.npc {
+    position: absolute;
+    background-color: antiquewhite;
+    width: 100%;
+    bottom: 50px;
+    height: 100px;
+}
+
+.npc .right {
+    float: right;
+    margin-top: -50px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.npc img {
+    height: 100px;
+    display: block;
+    margin: 5px auto;
+}
+
+.npc span {
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.49);
+    color: white;
+}
+
+.npc p {
+    margin-top: 20px;
+}
+.depiction{
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 400px;
+    margin: 0 auto;
+    color: white;
+    border-radius: 0 0 15px 15px;
+    padding: 2px;
 }

@@ -113,7 +113,7 @@ export default () => {
                     </Radio.Group>
                 </TabPane>
                 <TabPane key="2">
-                    <img src={SERVICE_IMG + 'dmbs.png'} alt={'大木博士'} width={'100px'}/>
+                    <img src={SERVICE_IMG + 'npc/1.png'} alt={'大木博士'} width={'100px'}/>
                     <Card title="年轻的训练师，你好：" bordered={false} style={{textAlign: 'left'}}>
                         我是宝可梦图鉴的创作者之一，同时也将会在豆可梦的世界指导训练师们变成世界一流的豆可梦训练家！
                         你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{DOKEMON[dokemon]}</span>，

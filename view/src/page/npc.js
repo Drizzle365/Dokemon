@@ -1,14 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import {SERVICE, SERVICE_IMG} from "../config";
 
-export default class Npc extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+import {useParams} from "react-router-dom";
 
-    render() {
-        return (
-            <h1>npc</h1>
-        )
-    }
+export default () => {
+    const {nid} = useParams()
+    const [npc, setNpc] = useState({
+        name: '',
+        depiction: '',
+        talk: ''
+    })
+    useEffect(() => {
+        axios.get(SERVICE + 'json/npc?nid=' + nid).then(r => {
+            setNpc({...r.data})
+        })
+    }, [])
+    return (
+        <>
+            <div className={'npc'}>
+                <div className={'right'}>
+                    <img src={SERVICE_IMG + 'npc/' + nid + '.png'} alt={npc.name}/>
+                    <span>{npc.name}</span>
+                </div>
+                <p>{npc.talk}</p>
+            </div>
+            <h4 className={'depiction'}>{npc.depiction}</h4>
+        </>
+
+
+    )
 }

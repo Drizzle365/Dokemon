@@ -4,7 +4,7 @@ from model.user import User
 from fastapi.middleware.cors import CORSMiddleware
 from model.model import UserModel
 from routers import role
-from routers import map
+from routers import json
 
 user = User()
 app = FastAPI()
@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(role.router, prefix="/role")
-app.include_router(map.router, prefix="/map")
+app.include_router(json.router, prefix="/json")
 
 
 @app.get("/")
