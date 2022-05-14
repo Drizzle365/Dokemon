@@ -10,13 +10,10 @@
     background-size: cover;
 }
 
-.info {
-
-}
 
 .main {
     width: 550px;
-    margin: 30px auto;
+    margin: 20px auto;
     background-color: rgba(240, 248, 255, 0.81);
     border-radius: 20px;
     min-height: 350px;
@@ -40,15 +37,13 @@
 }
 
 .chat {
-    position: fixed;
-    bottom: 0;
     left: 0;
     right: 0;
-    margin: 20px auto;
-    height: 100px;
+    height: 25px;
     background-color: rgba(191, 253, 243, 0.34);
     border-radius: 5px;
-    width: 80%;
+    width: 100%;
+    margin-bottom: 3px;
 }
 
 .link {
@@ -89,11 +84,22 @@
 .npc p {
     margin-top: 20px;
 }
-.depiction{
+
+.main_top {
     background-color: rgba(0, 0, 0, 0.65);
     width: 400px;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     color: white;
     border-radius: 0 0 15px 15px;
     padding: 2px;
+}
+
+.bottom_bar {
+    border-radius: 15px 15px 0 0;
+    padding: 8px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(46, 49, 46, 0.55);
+    width: 100%;
 }

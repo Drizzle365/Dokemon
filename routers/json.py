@@ -10,7 +10,9 @@ js_dokemon = JsonSelect('dokemon')
 @router.get('/map')
 def get_map(mid: int):
     m = js_map.get_map(mid)
-    m['npc_name'] = js_npc.get_npc(int(m['npc']))['name']
+    m['npc_list'] = []
+    for item in str(m['npc']).split():
+        m['npc_list'].append({'id': item, 'name': js_npc.get_npc(int(item))['name']})
     return m
 
 

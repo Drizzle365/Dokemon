@@ -16,28 +16,31 @@ export default () => {
         sex: '',
         uid: ''
     });
-    const [map, setMap] = useState({
+    const [mmap, setMap] = useState({
         name: '',
         depiction: '',
-        npc: ''
+        npc: '',
+        npc_list: false
     })
     useEffect(() => {
         axios.get(SERVICE + 'role?token=' + cookie.load('token')).then(r => {
             setRole({...r.data.role})
-            axios.get(SERVICE + 'json/map?mid=' + r.data.role.map).then(r => {
+            axios.get(SERVICE + 'json/map?mid=' + r.data.role['map']).then(r => {
                 setMap({...r.data})
             })
         })
     }, [])
     return (
         <div>
-            <h2>{map.name}</h2>
-            <p>{map.depiction}</p>
+            <h1 className={'main_top'}>{mmap.name}</h1>
+            <p>{mmap.depiction}</p>
             <h2>这里有:</h2>
-            <h3 onClick={() => {
-                navigate('/game/npc/' + map.npc)
-            }} className={'link'}><img style={{height: '25px', margin: '2px'}} alt={'!'}
-                                       src={SERVICE_IMG + 'ui/!.png'}/>{map['npc_name']}</h3>
+            {mmap.npc_list ? mmap.npc_list.map((item, index) => (
+                <span key={index} onClick={() => {
+                    navigate('/game/npc/' + item.id)
+                }} className={'link'}><img style={{height: '25px', margin: '2px'}} alt={'!'}
+                                           src={SERVICE_IMG + 'ui/!.png'}/>{item.name}</span>
+            )) : '加载中'}
         </div>
     )
 }

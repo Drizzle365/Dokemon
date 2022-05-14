@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {SERVICE, SERVICE_IMG} from "../config";
-
 import {useParams} from "react-router-dom";
 
 export default () => {
@@ -25,9 +24,7 @@ export default () => {
                 </div>
                 <p>{npc.talk}</p>
             </div>
-            <h4 className={'depiction'}>{npc.depiction}</h4>
+            <h3 className={'main_top'}>{npc.depiction}</h3>
         </>
-
-
     )
 }

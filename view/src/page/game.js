@@ -26,18 +26,6 @@ export default () => {
     }
     return (
         <div className={'game'}>
-            <div>
-                <img onClick={() => {
-                    navigate('/game/announcement')
-                }} className={'buttonImg'} src={SERVICE_IMG + 'ui/gg.png'} alt={'公告'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/bb.png'} alt={'背包'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/cj.png'} alt={'抽奖'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/fl.png'} alt={'福利'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/jj.png'} alt={'竞技'}/>
-                <img onClick={sign} className={'buttonImg'} src={SERVICE_IMG + 'ui/qd.png'} alt={'签到'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/rw.png'} alt={'任务'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/sd.png'} alt={'商店'}/>
-            </div>
             <div className={'main'}>
                 <Outlet/>
             </div>
@@ -47,8 +35,23 @@ export default () => {
                 }}>返回地图</Button>
                 <Button>我的豆可梦</Button>
             </div>
-            <div className={'chat'}>
-                实时聊天区域
+
+            <div className={'bottom_bar'}>
+                <div className={'chat'}>
+                    <p><span style={{display: 'inline', color: 'blue'}}>系统</span>：欢迎来到豆可梦的世界！</p>
+                </div>
+                <div>
+                    <img onClick={() => {
+                        navigate('/game/announcement')
+                    }} className={'buttonImg'} src={SERVICE_IMG + 'ui/gg.png'} alt={'公告'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/bb.png'} alt={'背包'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/cj.png'} alt={'抽奖'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/fl.png'} alt={'福利'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/jj.png'} alt={'竞技'}/>
+                    <img onClick={sign} className={'buttonImg'} src={SERVICE_IMG + 'ui/qd.png'} alt={'签到'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/rw.png'} alt={'任务'}/>
+                    <img className={'buttonImg'} src={SERVICE_IMG + 'ui/sd.png'} alt={'商店'}/>
+                </div>
             </div>
         </div>
     )
