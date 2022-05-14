@@ -5,6 +5,7 @@ router = APIRouter()
 js_map = JsonSelect('map')
 js_npc = JsonSelect('npc')
 js_dokemon = JsonSelect('dokemon')
+js_task = JsonSelect('task')
 
 
 @router.get('/map')
@@ -23,6 +24,11 @@ def get_map(mid: int):
 @router.get('/npc')
 def get_npc(nid: int):
     return js_npc.get_npc(nid)
+
+
+@router.get('/task')
+def get_task(tid: int):
+    return js_task.get_task(tid)
 
 
 @router.get('/dokemon')

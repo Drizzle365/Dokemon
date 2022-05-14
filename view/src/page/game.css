@@ -12,7 +12,7 @@
 
 
 .main {
-    width: 550px;
+    max-width: 550px;
     margin: 20px auto;
     background-color: rgba(240, 248, 255, 0.81);
     border-radius: 20px;
@@ -49,6 +49,7 @@
 .link {
     text-decoration: underline;
     color: rgba(255, 153, 0, 0.82);
+    margin: 3px;
     cursor: pointer;
     display: inline;
 }
@@ -57,13 +58,14 @@
     position: absolute;
     background-color: antiquewhite;
     width: 100%;
-    bottom: 50px;
-    height: 100px;
+    bottom: 80px;
+    height: 110px;
+    padding: 15px;
 }
 
 .npc .right {
     float: right;
-    margin-top: -50px;
+    margin-top: -60px;
     text-align: center;
     margin-right: 10px;
 }
@@ -71,7 +73,8 @@
 .npc img {
     height: 100px;
     display: block;
-    margin: 5px auto;
+    margin: 10px auto;
+    border-radius: 20px;
 }
 
 .npc span {
@@ -82,7 +85,7 @@
 }
 
 .npc p {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .main_top {

@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordBearer
-import datetime
 from model.auth import get_user
 from model.json import JsonSelect
 from model.model import CreateRoleModel

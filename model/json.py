@@ -14,3 +14,6 @@ class JsonSelect:
 
     def get_npc(self, nid: int) -> dict:
         return self.data[nid - 1]
+
+    def get_task(self, tid: int) -> dict:
+        return self.data[tid - 1]
