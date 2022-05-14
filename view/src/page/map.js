@@ -34,10 +34,12 @@ export default () => {
             }} className={'link'}>{item.id === task['npc'] ? <img style={{height: '25px', margin: '2px'}} alt={'!'}
                                                                   src={SERVICE_IMG + 'ui/!.png'}/> : ""}{item.name}</span>)) : '加载中'}</div>
         <div>
-            {mmap.dokemon_list ? mmap.dokemon_list.map((item, index) => (<span key={index} onClick={() => {
-                console.log(item)
-            }} className={'link'} style={{color: '#32327a'}}> <img style={{height: '25px', margin: '2px'}} alt={'!'}
-                                                                   src={SERVICE_IMG + 'pokemon/' + item.id + '.gif'}/>{item.name}</span>)) : '加载中'}
+            {mmap.dokemon_list ? mmap.dokemon_list.map((item, index) => (
+                <span><img style={{height: '25px', margin: '2px'}} alt={'!'}
+                           src={SERVICE_IMG + 'pokemon/' + item.id + '.gif'}/>
+                <span key={index} onClick={() => {
+                    console.log(item)
+                }} className={'link'} style={{color: '#32327a'}}>{item.name}( lv.{item['lv']} )</span></span>)) : '加载中'}
         </div>
     </div>)
 }
