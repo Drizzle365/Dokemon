@@ -10,6 +10,11 @@
     background-size: cover;
 }
 
+.create {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
 
 .main {
     max-width: 550px;

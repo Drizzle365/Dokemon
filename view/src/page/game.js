@@ -1,7 +1,8 @@
 // noinspection ES6CheckImport
 
 import React from "react";
-import './game.css'
+import './game.css';
+import './mobile.css';
 import {SERVICE, SERVICE_IMG} from "../config";
 import {Outlet, useNavigate} from "react-router-dom";
 import {Button, notification} from "antd";

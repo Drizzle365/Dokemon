@@ -1,0 +1,22 @@
+@media (max-width: 640px) {
+    .create {
+        width: 300px;
+    }
+
+    .main {
+        min-height: 380px;
+    }
+
+    .main_top {
+        font-size: 14px;
+        width: 80%;
+    }
+
+    .game {
+        padding: 20px;
+    }
+
+    .npc {
+        padding: 0;
+    }
+}

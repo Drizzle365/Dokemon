@@ -53,7 +53,7 @@ export default () => {
     }
     return (<>
         <Title></Title>
-        <div style={{width: '600px', margin: '0 auto', textAlign: 'center'}}>
+        <div className={'create'}>
             <Steps current={step}>
                 <Step title="训练师信息" description="完善你的训练师信息"/>
                 <Step title="选择豆可梦" description="选择你的第一个伙伴吧"/>
