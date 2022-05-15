@@ -12,16 +12,18 @@ export default () => {
         depiction: '',
         talk: '',
     })
-    const [task, setTask] = useState({})
-    const [isTask, setIsTask] = useState(false)
+    const [talk, setTalk] = useState('')
 
     async function init() {
         let role_res = (await axios.get(SERVICE + 'role?token=' + cookie.load('token'))).data
         let task_res = (await axios.get(SERVICE + 'json/task?tid=' + role_res.role['task'])).data
         let npc_res = (await axios.get(SERVICE + 'json/npc?nid=' + nid)).data
-        if (task_res['npc'] === nid) {
-            setIsTask(true)
-            setTask({...task_res})
+        if (task_res['npc'] === nid && role_res.role['task_state'] === 0) {
+            setTalk(task_res['talk1'])
+        } else if (task_res['target'] === nid && role_res.role['task_state'] === 1)
+            setTalk(task_res['talk2'])
+        else {
+            setTalk(npc_res['talk'])
         }
         setNpc({...npc_res})
         return npc_res['id']
@@ -37,11 +39,11 @@ export default () => {
                     <img src={SERVICE_IMG + 'npc/' + nid + '.png'} alt={npc.name}/>
                     <span>{npc.name}</span>
                 </div>
-                {isTask ? <p>{task['talk']}</p> : <p>{npc.talk}</p>}
+                <p>{talk}</p>
             </div>
-            <h3 className={'main_top'}>{npc.depiction}</h3>
-            <div style={{position:'absolute',bottom:'20px',right:0,left:0}}>
-                {isTask ? <Button>😊接受任务</Button> : ''}
+            <h3 className={'mainTop'}>{npc.depiction}</h3>
+            <div style={{position: 'absolute', bottom: '20px', right: 0, left: 0}}>
+                <Button><span role={'img'} aria-label={'happy'}>😊</span>接受任务</Button>
             </div>
         </>
     )

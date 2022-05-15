@@ -7,13 +7,22 @@
         min-height: 380px;
     }
 
-    .main_top {
+    .mainTop {
         font-size: 14px;
         width: 80%;
     }
 
     .game {
         padding: 20px;
+    }
+
+    .bottomBr {
+        display: block;
+    }
+
+    .bottomBr img {
+        margin: 3px 10px;
+        height: 60px;
     }
 
     .npc {
