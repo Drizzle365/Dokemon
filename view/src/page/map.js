@@ -14,7 +14,7 @@ export default () => {
     const [task, setTask] = useState({})
 
     async function init() {
-        let role_res = (await axios.get(SERVICE + 'role?token=' + cookie.load('token'))).data
+        let role_res = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
         let map_res = (await axios.get(SERVICE + 'json/map?mid=' + role_res.role['map'])).data
         let task_res = (await axios.get(SERVICE + 'json/task?tid=' + role_res.role['task'])).data
         setMap({...map_res})
