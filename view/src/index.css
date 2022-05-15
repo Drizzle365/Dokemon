@@ -1,4 +1,6 @@
 @import '~antd/dist/antd.css';
+@import 'page/game.css';
+@import 'page/mobile.css';
 
 * {
     margin: 0;
