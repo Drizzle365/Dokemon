@@ -4,7 +4,8 @@ import {SERVICE, SERVICE_IMG} from "../config";
 import cookie from "react-cookies";
 // noinspection ES6CheckImport
 import {useNavigate} from "react-router-dom";
-import {Button, Spin} from "antd";
+import {Button} from "antd";
+import Loading from "../component/loading";
 
 export default () => {
     const navigate = useNavigate()
@@ -12,7 +13,7 @@ export default () => {
         name: '', depiction: '', npc: '', npc_list: false, dokemon_list: false
     })
     const [task, setTask] = useState({})
-    const [loading, setLoading] = useState('loading')
+    const [loading, setLoading] = useState(true)
 
     async function init() {
         let roleRes = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
@@ -24,16 +25,12 @@ export default () => {
 
     useEffect(() => {
         init().then(() => {
-            setLoading('loadingClose')
+            setLoading(false)
         })
     }, [])
 
     return (<div>
-        <div className={loading}>
-            <div style={{position: 'absolute', top: '50%', marginTop: '-60px', left: 0, right: 0}}>
-                <Spin size={"large"}>Dokemon</Spin>
-            </div>
-        </div>
+        <Loading loading={loading}></Loading>
         <h1 className={'mainTop'}>{mmap.name}</h1>
         <p>{mmap.depiction}</p>
         <h2>这里有:</h2>

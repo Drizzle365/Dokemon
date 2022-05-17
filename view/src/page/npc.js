@@ -3,7 +3,8 @@ import axios from "axios";
 import {SERVICE, SERVICE_IMG} from "../config";
 import {useParams} from "react-router-dom";
 import cookie from "react-cookies";
-import {Button, Spin} from "antd";
+import {Button} from "antd";
+import Loading from "../component/loading";
 
 export default () => {
     const {nid} = useParams()
@@ -14,7 +15,7 @@ export default () => {
     })
     const [talk, setTalk] = useState('')
     const [talkState, setTalkState] = useState(0)
-    const [loading, setLoading] = useState('loading')
+    const [loading, setLoading] = useState(true)
 
     async function init() {
         let roleRes = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
@@ -35,16 +36,12 @@ export default () => {
 
     useEffect(() => {
         init().then(() => {
-            setLoading('loadingClose')
+            setLoading(false)
         })
     }, [])
     return (
         <>
-            <div className={loading}>
-                <div style={{position: 'absolute', top: '50%', marginTop: '-60px', left: 0, right: 0}}>
-                    <Spin size={"large"}>Dokemon</Spin>
-                </div>
-            </div>
+            <Loading loading={loading}></Loading>
             <div className={'npc'}>
                 <div className={'right'}>
                     <img src={SERVICE_IMG + 'npc/' + nid + '.png'} alt={npc.name}/>
