@@ -4,7 +4,7 @@ import {SERVICE, SERVICE_IMG} from "../config";
 import cookie from "react-cookies";
 // noinspection ES6CheckImport
 import {useNavigate} from "react-router-dom";
-import {Button} from "antd";
+import {Button, Spin} from "antd";
 
 export default () => {
     const navigate = useNavigate()
@@ -12,20 +12,28 @@ export default () => {
         name: '', depiction: '', npc: '', npc_list: false, dokemon_list: false
     })
     const [task, setTask] = useState({})
+    const [loading, setLoading] = useState('loading')
 
     async function init() {
-        let role_res = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
-        let map_res = (await axios.get(SERVICE + 'json/map?mid=' + role_res.role['map'])).data
-        let task_res = (await axios.get(SERVICE + 'json/task?tid=' + role_res.role['task'])).data
-        setMap({...map_res})
-        setTask({...task_res})
+        let roleRes = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
+        let mapRes = (await axios.get(SERVICE + 'json/map?mid=' + roleRes.role['map'])).data
+        let taskRes = (await axios.get(SERVICE + 'json/task?tid=' + roleRes.role['task'])).data
+        setMap({...mapRes})
+        setTask({...taskRes})
     }
 
     useEffect(() => {
-        init().then(r => (r))
+        init().then(() => {
+            setLoading('loadingClose')
+        })
     }, [])
 
     return (<div>
+        <div className={loading}>
+            <div style={{position: 'absolute', top: '50%', marginTop: '-60px', left: 0, right: 0}}>
+                <Spin size={"large"}>Dokemon</Spin>
+            </div>
+        </div>
         <h1 className={'mainTop'}>{mmap.name}</h1>
         <p>{mmap.depiction}</p>
         <h2>这里有:</h2>

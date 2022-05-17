@@ -1,4 +1,4 @@
-const flag = false;
+const flag = 1;
 let SERVICE = 'http://localhost:8000/';
 let SERVICE_IMG = 'http://localhost:8000/static/img/';
 if (flag) {

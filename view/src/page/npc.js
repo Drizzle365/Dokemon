@@ -3,7 +3,7 @@ import axios from "axios";
 import {SERVICE, SERVICE_IMG} from "../config";
 import {useParams} from "react-router-dom";
 import cookie from "react-cookies";
-import {Button} from "antd";
+import {Button, Spin} from "antd";
 
 export default () => {
     const {nid} = useParams()
@@ -14,29 +14,37 @@ export default () => {
     })
     const [talk, setTalk] = useState('')
     const [talkState, setTalkState] = useState(0)
+    const [loading, setLoading] = useState('loading')
 
     async function init() {
-        let role_res = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
-        let task_res = (await axios.get(SERVICE + 'json/task?tid=' + role_res.role['task'])).data
-        let npc_res = (await axios.get(SERVICE + 'json/npc?nid=' + nid)).data
-        if (task_res['npc'] === nid && role_res.role['task_state'] === 0) {
-            setTalk(task_res['talk1'].replaceAll('<name>', role_res.role['name']))
+        let roleRes = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
+        let taskRes = (await axios.get(SERVICE + 'json/task?tid=' + roleRes.role['task'])).data
+        let npcRes = (await axios.get(SERVICE + 'json/npc?nid=' + nid)).data
+        if (taskRes['npc'] === nid && roleRes.role['task_state'] === 0) {
+            setTalk(taskRes['talk1'].replaceAll('<name>', roleRes.role['name']))
             setTalkState(1)
-        } else if (task_res['target'] === nid && role_res.role['task_state'] === 2) {
-            setTalk(task_res['talk2'].replaceAll('<name>', role_res.role['name']))
+        } else if (taskRes['target'] === nid && roleRes.role['task_state'] === 2) {
+            setTalk(taskRes['talk2'].replaceAll('<name>', roleRes.role['name']))
             setTalkState(2)
         } else {
-            setTalk(npc_res['talk'].replaceAll('<name>', role_res.role['name']))
+            setTalk(npcRes['talk'].replaceAll('<name>', roleRes.role['name']))
         }
-        setNpc({...npc_res})
-        return npc_res['id']
+        setNpc({...npcRes})
+        return npcRes['id']
     }
 
     useEffect(() => {
-        init().then(r => (r))
+        init().then(() => {
+            setLoading('loadingClose')
+        })
     }, [])
     return (
         <>
+            <div className={loading}>
+                <div style={{position: 'absolute', top: '50%', marginTop: '-60px', left: 0, right: 0}}>
+                    <Spin size={"large"}>Dokemon</Spin>
+                </div>
+            </div>
             <div className={'npc'}>
                 <div className={'right'}>
                     <img src={SERVICE_IMG + 'npc/' + nid + '.png'} alt={npc.name}/>
