@@ -25,3 +25,17 @@ class Role:
         self.add_coin(uid, 300)
         self.db.table('role').where('uid = %s' % uid).update(sign=str(datetime.date.today()))
         return {'msg': '签到成功，获得300硬币!', 'code': 0}
+
+    def move(self, uid: int, d: int):
+        r = self.get(uid)
+        new_map = list(map(int, r['map'].split(',')))
+        if d == 0:
+            new_map[0] -= 1
+        elif d == 1:
+            new_map[1] += 1
+        elif d == 2:
+            new_map[0] += 1
+        else:
+            new_map[1] -= 1
+
+        return self.db.table('role').where('uid = %s' % uid).update(map=','.join(map(str, new_map)))

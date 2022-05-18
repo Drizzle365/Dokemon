@@ -51,3 +51,8 @@ def create(req: CreateRoleModel, user=Depends(get_user)):
 @router.get('/sign')
 def sign(user=Depends(get_user)):
     return role.sign(user['uid'])
+
+
+@router.get('/move')
+def move(d: int, user=Depends(get_user)):
+    return role.move(user['uid'], d)

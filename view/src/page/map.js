@@ -10,7 +10,7 @@ import Loading from "../component/loading";
 export default () => {
     const navigate = useNavigate()
     const [mmap, setMap] = useState({
-        name: '', depiction: '', npc: '', npc_list: false, dokemon_list: false
+        name: '', depiction: '', npc: '', npc_list: false, dokemon_list: false, N: false, E: false, S: false, W: false
     })
     const [task, setTask] = useState({})
     const [loading, setLoading] = useState(true)
@@ -28,7 +28,17 @@ export default () => {
             setLoading(false)
         })
     }, [])
+    const move = (d) => {
+        setLoading(true)
+        axios.get(SERVICE + 'role/move?token=' + cookie.load('token') + '&d=' + d).then(
+            () => {
+                init().then(() => {
+                    setLoading(false)
+                })
+            }
+        )
 
+    }
     return (<div>
         <Loading loading={loading}></Loading>
         <h1 className={'mainTop'}>{mmap.name}</h1>
@@ -45,16 +55,28 @@ export default () => {
                     <span key={index} onClick={() => {
                         console.log(item)
                     }} className={'link'} style={{color: '#32327a'}}><img style={{height: '25px', margin: '2px'}} alt={'!'}
-                                                                          src={SERVICE_IMG + 'pokemon/' + item.id + '.gif'}/>{item.name}( lv.{item['lv']} )</span>)) :
+                                                                          src={SERVICE_IMG + 'pokemon/front/' + item.id + '.gif'}/>{item.name}( lv.{item['lv']} )</span>)) :
                 '加载中'}
         </div>
         <div style={{marginTop: '20px', backgroundColor: 'salmon', padding: '12px', borderRadius: '0 0 100px 100px'}}>
             <div>
-                <Button>↑ 星辰森林</Button>
+                {mmap['N'] ? <Button onClick={() => {
+                    move(0)
+                }}>↑ {mmap['N']}</Button> : ''}
             </div>
-            <div><Button>← 道路101</Button><Button>→ 道路102</Button></div>
-            <div><Button>↓ 道路103</Button></div>
+            <div>
+                {mmap['W'] ? <Button onClick={() => {
+                    move(3)
+                }}>← {mmap['W']}</Button> : ''}
+                {mmap['E'] ? <Button onClick={() => {
+                    move(1)
+                }}>→ {mmap['E']}</Button> : ''}
+            </div>
+            <div>
+                {mmap['S'] ? <Button onClick={() => {
+                    move(2)
+                }}>↓ {mmap['S']}</Button> : ''}
+            </div>
         </div>
-
     </div>)
 }
