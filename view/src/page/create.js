@@ -86,15 +86,15 @@ export default () => {
                 </TabPane>
                 <TabPane key="1">
                     <div style={{marginTop: '20px'}}>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/1.gif'} alt={'妙蛙种子'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/1.gif'} alt={'妙蛙种子'}
                              onClick={() => {
                                  setDokemon(1)
                              }}></img>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/4.gif'} alt={'小火龙'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/4.gif'} alt={'小火龙'}
                              onClick={() => {
                                  setDokemon(4)
                              }}></img>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/7.gif'} alt={'杰尼龟'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/7.gif'} alt={'杰尼龟'}
                              onClick={() => {
                                  setDokemon(7)
                              }}></img>
@@ -114,7 +114,7 @@ export default () => {
                     </Radio.Group>
                 </TabPane>
                 <TabPane key="2">
-                    <img src={SERVICE_IMG + 'npc/1.png'} alt={'大木博士'} width={'100px'}/>
+                    <img src={SERVICE_IMG + 'npc/大木博士.png'} alt={'大木博士'} width={'100px'}/>
                     <Card title="年轻的训练师，你好：" bordered={false} style={{textAlign: 'left'}}>
                         我是宝可梦图鉴的创作者之一，同时也将会在豆可梦的世界指导训练师们变成世界一流的豆可梦训练家！
                         你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{DOKEMON[dokemon]}</span>，

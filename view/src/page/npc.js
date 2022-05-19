@@ -20,7 +20,7 @@ export default () => {
     async function init() {
         let roleRes = (await axios.get(SERVICE + 'role/?token=' + cookie.load('token'))).data
         let taskRes = (await axios.get(SERVICE + 'json/task?tid=' + roleRes.role['task'])).data
-        let npcRes = (await axios.get(SERVICE + 'json/npc?nid=' + nid)).data
+        let npcRes = (await axios.get(SERVICE + 'json/npc?name=' + nid)).data
         if (taskRes['npc'] === nid && roleRes.role['task_state'] === 0) {
             setTalk(taskRes['talk1'].replaceAll('<name>', roleRes.role['name']))
             setTalkState(1)

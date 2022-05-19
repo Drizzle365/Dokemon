@@ -1,6 +1,6 @@
-import model.json
+import model.json_select
 
-dokemon = model.json.JsonSelect('dokemon', '../../')
+dokemon = model.json_select.JsonSelect('dokemon', '../../')
 
 
 def ability(did, lv):
