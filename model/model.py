@@ -9,4 +9,4 @@ class UserModel(BaseModel):
 class CreateRoleModel(BaseModel):
     name: str
     sex: str
-    dokemon: int
+    dokemon: str

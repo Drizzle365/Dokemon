@@ -37,7 +37,6 @@ def create(req: CreateRoleModel, user=Depends(get_user)):
         return {'msg': '已经注册!'}
     role.create(uid=user['uid'], name=req.name, sex=req.sex)
     dm = js.get_dokemon(req.dokemon)
-    del dm['id']
     del dm['HP']
     del dm['AT']
     del dm['DF']
