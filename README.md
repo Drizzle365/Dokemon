@@ -1,6 +1,6 @@
 # Dokemon
 
-> 当前游戏完善程度极低，仅供测试和PR提交，正在开发中
+> 当前游戏完善程度极低，仅供测试和相关贡献提交，正在开发中
 
 这是一个类 `Pokemon` 的在线网页MUD游戏
 
@@ -16,9 +16,11 @@
 
 `npm install`
 
+修改 `/view/src/config.js`的服务器地址配置
+
 #### 数据库
 
-导入根目录下的 `dokemon.sql` 数据库配置项：`./data/mysql.sql`
+导入根目录下的 `dokemon.sql` 数据库配置项：`./data/mysql.py`
 
 ### 测试运行
 
