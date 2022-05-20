@@ -26,7 +26,6 @@ export default () => {
     useEffect(() => {
         init().then(() => {
             setLoading(false)
-
         })
     }, [])
     const move = (d) => {

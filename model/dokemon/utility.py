@@ -13,3 +13,7 @@ def ability(did, lv):
     d['SD'] = int(int(d['SD']) * 2 * lv / 100 + 5 + 0.5)
     d['SP'] = int(int(d['SP']) * 2 * lv / 100 + 5 + 0.5)
     return d
+
+
+if __name__ == '__main__':
+    print(ability('250', 1))

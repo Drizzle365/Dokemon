@@ -104,6 +104,7 @@ def task_excel_json():
 
 
 if __name__ == '__main__':
+    dokemon_excel_to_json()
     map_excel_json()
     task_excel_json()
     npc_excel_json()
