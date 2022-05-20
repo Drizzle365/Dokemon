@@ -125,3 +125,11 @@ class MySql:
         self.db.commit()
         self.finish()
         return self.cursor.fetchall()
+
+    def delete(self):
+        self.prepare()
+        sql = "DELETE FROM %s WHERE %s" % (self.Table, self.Where)
+        self.cursor.execute(sql)
+        self.db.commit()
+        self.finish()
+        return self.cursor.rowcount

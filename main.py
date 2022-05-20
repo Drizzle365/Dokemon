@@ -3,8 +3,7 @@ from fastapi.staticfiles import StaticFiles
 from model.user import User
 from fastapi.middleware.cors import CORSMiddleware
 from model.model import UserModel
-from routers import role
-from routers import json
+from routers import role, json, backpack
 
 user = User()
 app = FastAPI()
@@ -23,6 +22,7 @@ app.add_middleware(
 )
 app.include_router(role.router, prefix="/role")
 app.include_router(json.router, prefix="/json")
+app.include_router(backpack.router, prefix="/backpack")
 
 
 @app.get("/")

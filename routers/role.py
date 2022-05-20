@@ -55,3 +55,5 @@ def sign(user=Depends(get_user)):
 @router.get('/move')
 def move(d: int, user=Depends(get_user)):
     return role.move(user['uid'], d)
+
+
