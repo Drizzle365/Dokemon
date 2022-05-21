@@ -20,15 +20,6 @@ def index(user=Depends(get_user)):
         return {'code': 1, 'msg': '您还未注册'}
 
 
-@router.get('/get')
-def get(uid):
-    res = role.get(uid)
-    if res:
-        return {'code': 0, 'role': res}
-    else:
-        return {'code': 1, 'msg': '未找到该角色'}
-
-
 @router.post('/create')
 def create(req: CreateRoleModel, user=Depends(get_user)):
     if not user.get('uid'):
