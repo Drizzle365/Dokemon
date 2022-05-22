@@ -7,8 +7,8 @@ class MySql:
         self.Field: str = '*'
         self.Where: str = '1 = 1'
         self.Order: str = NULL
-        self.db = connect(host='127.0.0.1', user='root',
-                          password='root', db='dokemon', port=3306)
+        self.db = connect(host='127.0.0.1', user='dokemon',
+                          password='bYydLFfBbwrbrrmp', db='dokemon', port=3306)
         self.cursor = self.db.cursor(cursors.DictCursor)
 
     def finish(self):
@@ -20,10 +20,11 @@ class MySql:
     def prepare(self):
         # noinspection PyBroadException
         try:
-            self.db.ping()
+            self.db.ping(reconnect=True)
         except:
-            self.db = connect(host='127.0.0.1', user='root',
-                              password='root', db='dokemon', port=3306)
+            self.db = connect(host='127.0.0.1', user='dokemon',
+                              password='bYydLFfBbwrbrrmp', db='dokemon', port=3306)
+            self.cursor = self.db.cursor(cursors.DictCursor)
 
     def table(self, table: str):
         self.Table = table
@@ -50,6 +51,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.fetchone()
 
     def list(self, num: int = NULL):
@@ -62,6 +65,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.fetchall()
 
     def count(self) -> int:
@@ -70,6 +75,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.rowcount
 
     def page(self, p: int = 1, n: int = 5) -> dict:
@@ -83,6 +90,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         res = {'model': self.cursor.fetchall(), 'count': count}
         return res
 
@@ -101,6 +110,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.lastrowid
 
     def update(self, **field) -> int:
@@ -116,6 +127,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.rowcount
 
     def search(self, field, words):
@@ -124,6 +137,8 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.fetchall()
 
     def delete(self):
@@ -132,4 +147,6 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
+        self.db.cursor().close()
+        self.db.close()
         return self.cursor.rowcount
