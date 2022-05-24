@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from model.auth import get_user
+from utility.auth import get_user
 from model.backpack import Backpack
 
 router = APIRouter()

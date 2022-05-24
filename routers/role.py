@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordBearer
-from model.auth import get_user
+from utility.auth import get_user
 from model.json_select import JsonSelect
 from model.role import Role
 from pydantic import BaseModel

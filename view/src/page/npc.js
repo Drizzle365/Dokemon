@@ -1,3 +1,5 @@
+// noinspection ES6CheckImport
+
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {SERVICE, SERVICE_IMG} from "../config";
@@ -5,8 +7,10 @@ import {useParams} from "react-router-dom";
 import cookie from "react-cookies";
 import {Button} from "antd";
 import Loading from "../component/loading";
+import {useNavigate} from "react-router-dom";
 
 export default () => {
+    const navigate = useNavigate()
     const {npcName} = useParams()
     const [npc, setNpc] = useState({
         name: '',
@@ -17,7 +21,10 @@ export default () => {
 
     async function init() {
         let npcRes = (await axios.get(SERVICE + 'query/npc?token=' + cookie.load('token') + '&name=' + npcName)).data
-        setNpc(npcRes)
+        if (npcRes['type'] === '特殊')
+            navigate('/game/' + npcRes['depiction'])
+        else
+            setNpc(npcRes)
     }
 
     useEffect(() => {

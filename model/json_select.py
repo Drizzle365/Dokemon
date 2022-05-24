@@ -17,3 +17,9 @@ class JsonSelect:
 
     def get_task(self, tid: str) -> dict:
         return self.data[tid]
+
+    def get_item(self, iid: str) -> dict:
+        return self.data[iid]
+
+    def get_store(self) -> dict:
+        return self.data

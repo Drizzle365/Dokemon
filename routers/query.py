@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from model.auth import get_user
+from utility.auth import get_user
 from model.backpack import Backpack
 from model.json_select import JsonSelect
 from model.role import Role

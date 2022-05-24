@@ -8,6 +8,7 @@ import Game from "./page/game";
 import Map from "./page/map";
 import Npc from "./page/npc";
 import Announcement from "./page/announcement";
+import Store from "./page/store";
 
 const Router = () => {
 
@@ -18,6 +19,7 @@ const Router = () => {
             <Route path="map" element={<Map/>}></Route>
             <Route path="npc/:npcName" element={<Npc/>}></Route>
             <Route path="announcement" element={<Announcement/>}></Route>
+            <Route path="store" element={<Store/>}></Route>
         </Route>
     </Routes>)
 }

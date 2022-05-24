@@ -3,7 +3,7 @@ import xlrd
 
 
 def dokemon_excel_to_json():
-    data = xlrd.open_workbook('excel/dokemon.xls')
+    data = xlrd.open_workbook('../model/excel/dokemon.xls')
     table = data.sheet_by_name('dokemon')
     did = table.col(0)
     name = table.col(1)
@@ -25,13 +25,13 @@ def dokemon_excel_to_json():
             'SP': sp[i].value
         }
     dokemon_data = json.dumps(dokemon_json, ensure_ascii=False)
-    with open('json/dokemon.json', 'w', encoding='utf-8') as f:
+    with open('../model/json/dokemon.json', 'w', encoding='utf-8') as f:
         f.write(dokemon_data)
-        print('dokemon 数据转化完成！')
+        print('豆可梦数据转化完成！')
 
 
 def map_excel_json():
-    data = xlrd.open_workbook('excel/map.xls')
+    data = xlrd.open_workbook('../model/excel/map.xls')
     table = data.sheet_by_name('map')
     mid = table.col(0)
     name = table.col(1)
@@ -47,32 +47,34 @@ def map_excel_json():
             'dokemon': dokemon[i].value,
         }
     map_data = json.dumps(map_json, ensure_ascii=False)
-    with open('json/map.json', 'w', encoding='utf-8') as f:
+    with open('../model/json/map.json', 'w', encoding='utf-8') as f:
         f.write(map_data)
-        print('map 数据转化完成！')
+        print('地图数据转化完成！')
 
 
 def npc_excel_json():
-    data = xlrd.open_workbook('excel/npc.xls')
+    data = xlrd.open_workbook('../model/excel/npc.xls')
     table = data.sheet_by_name('npc')
-    name = table.col(1)
-    depiction = table.col(2)
-    talk = table.col(3)
+    type_ = table.col(1)
+    name = table.col(2)
+    depiction = table.col(3)
+    talk = table.col(4)
     npc_json = {}
     for i in range(1, table.nrows):
         npc_json[name[i].value] = {
+            'type': type_[i].value,
             'name': name[i].value,
             'depiction': depiction[i].value,
             'talk': talk[i].value,
         }
     npc_data = json.dumps(npc_json, ensure_ascii=False)
-    with open('json/npc.json', 'w', encoding='utf-8') as f:
+    with open('../model/json/npc.json', 'w', encoding='utf-8') as f:
         f.write(npc_data)
         print('npc 数据转化完成！')
 
 
 def task_excel_json():
-    data = xlrd.open_workbook('excel/task.xls')
+    data = xlrd.open_workbook('../model/excel/task.xls')
     table = data.sheet_by_name('task')
     tid = table.col(0)
     name = table.col(1)
@@ -98,9 +100,56 @@ def task_excel_json():
             'coin': coin[i].value,
         }
     task_data = json.dumps(task_json, ensure_ascii=False)
-    with open('json/task.json', 'w', encoding='utf-8') as f:
+    with open('../model/json/task.json', 'w', encoding='utf-8') as f:
         f.write(task_data)
-        print('task 数据转化完成！')
+        print('任务数据转化完成！')
+
+
+def items_excel_json():
+    data = xlrd.open_workbook('../model/excel/items.xls')
+    table = data.sheet_by_name('items')
+    iid = table.col(0)
+    name = table.col(1)
+    depiction = table.col(2)
+    type_ = table.col(3)
+    function = table.col(4)
+
+    items_json = {}
+    for i in range(1, table.nrows):
+        items_json[int(iid[i].value)] = {
+            'type': type_[i].value,
+            'name': name[i].value,
+            'depiction': depiction[i].value,
+            'function': function[i].value
+        }
+    npc_data = json.dumps(items_json, ensure_ascii=False)
+    with open('../model/json/item.json', 'w', encoding='utf-8') as f:
+        f.write(npc_data)
+        print('物品数据转化完成！')
+
+
+def store_excel_json():
+    data = xlrd.open_workbook('../model/excel/store.xls')
+    table = data.sheet_by_name('store')
+    sid = table.col(0)
+    iid = table.col(1)
+    name = table.col(2)
+    depiction = table.col(3)
+    type_ = table.col(4)
+    price = table.col(5)
+    store_json = {}
+    for i in range(1, table.nrows):
+        store_json[int(sid[i].value)] = {
+            'iid': int(iid[i].value),
+            'type': type_[i].value,
+            'name': name[i].value,
+            'depiction': depiction[i].value,
+            'price': int(price[i].value),
+        }
+    store_data = json.dumps(store_json, ensure_ascii=False)
+    with open('../model/json/store.json', 'w', encoding='utf-8') as f:
+        f.write(store_data)
+        print('商店数据转化完成！')
 
 
 if __name__ == '__main__':
@@ -108,3 +157,5 @@ if __name__ == '__main__':
     map_excel_json()
     task_excel_json()
     npc_excel_json()
+    items_excel_json()
+    store_excel_json()
