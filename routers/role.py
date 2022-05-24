@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordBearer
 from model.auth import get_user
 from model.json_select import JsonSelect
-from model.model import CreateRoleModel
 from model.role import Role
+from pydantic import BaseModel
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 router = APIRouter()
@@ -20,6 +20,12 @@ def index(user=Depends(get_user)):
         return {'code': 1, 'msg': '您还未注册'}
 
 
+class CreateRoleModel(BaseModel):
+    name: str
+    sex: str
+    dokemon: str
+
+
 @router.post('/create')
 def create(req: CreateRoleModel, user=Depends(get_user)):
     if not user.get('uid'):
@@ -28,13 +34,7 @@ def create(req: CreateRoleModel, user=Depends(get_user)):
         return {'msg': '已经注册!'}
     role.create(uid=user['uid'], name=req.name, sex=req.sex)
     dm = js.get_dokemon(req.dokemon)
-    del dm['HP']
-    del dm['AT']
-    del dm['DF']
-    del dm['SA']
-    del dm['SD']
-    del dm['SP']
-    role.db.table('dokemon').insert(uid=user['uid'], **dm)
+    role.db.table('dokemon').insert(uid=user['uid'], pid=req.dokemon, name=dm['name'])
     return {'code': 0}
 
 
@@ -46,5 +46,3 @@ def sign(user=Depends(get_user)):
 @router.get('/move')
 def move(d: int, user=Depends(get_user)):
     return role.move(user['uid'], d)
-
-

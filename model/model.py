@@ -6,7 +6,3 @@ class UserModel(BaseModel):
     password: str
 
 
-class CreateRoleModel(BaseModel):
-    name: str
-    sex: str
-    dokemon: str
