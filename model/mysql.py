@@ -16,6 +16,8 @@ class MySql:
         self.Field: str = '*'
         self.Where: str = '1 = 1'
         self.Order: str = NULL
+        self.db.cursor().close()
+        self.db.close()
 
     def prepare(self):
         # noinspection PyBroadException
@@ -50,10 +52,9 @@ class MySql:
         sql += ' LIMIT 1'
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.fetchone()
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.fetchone()
+        return res
 
     def list(self, num: int = NULL):
         self.prepare()
@@ -64,20 +65,18 @@ class MySql:
             sql += " LIMIT %d" % num
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.fetchall()
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.fetchall()
+        return res
 
     def count(self) -> int:
         self.prepare()
         sql = "SELECT %s FROM %s WHERE %s" % (self.Field, self.Table, self.Where)
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.rowcount
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.rowcount
+        return res
 
     def page(self, p: int = 1, n: int = 5) -> dict:
         self.prepare()
@@ -90,8 +89,6 @@ class MySql:
         self.cursor.execute(sql)
         self.db.commit()
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
         res = {'model': self.cursor.fetchall(), 'count': count}
         return res
 
@@ -109,10 +106,9 @@ class MySql:
         sql = "INSERT INTO %s(%s)VALUES (%s)" % (self.Table, k, v)
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.lastrowid
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.lastrowid
+        return res
 
     def update(self, **field) -> int:
         self.prepare()
@@ -126,27 +122,24 @@ class MySql:
         sql = "UPDATE %s SET %s WHERE %s" % (self.Table, s, self.Where)
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.rowcount
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.rowcount
+        return res
 
     def search(self, field, words):
         self.prepare()
         sql = "SELECT %s FROM %s WHERE %s LIKE '%s'" % (self.Field, self.Table, field, words)
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.fetchall()
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.fetchall()
+        return res
 
     def delete(self):
         self.prepare()
         sql = "DELETE FROM %s WHERE %s" % (self.Table, self.Where)
         self.cursor.execute(sql)
         self.db.commit()
+        res = self.cursor.rowcount
         self.finish()
-        self.db.cursor().close()
-        self.db.close()
-        return self.cursor.rowcount
+        return res

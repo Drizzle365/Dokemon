@@ -46,3 +46,14 @@ def sign(user=Depends(get_user)):
 @router.get('/move')
 def move(d: int, user=Depends(get_user)):
     return role.move(user['uid'], d)
+
+
+@router.get('/accept_task')
+def accept_task(user=Depends(get_user)):
+    uid = user['uid']
+    r = role.get(uid)
+    if r['task_state'] == 0:
+        role.accept_task(uid)
+        return {'msg': '任务接受成功!'}
+    else:
+        return {'msg': '非法请求'}

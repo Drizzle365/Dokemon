@@ -39,3 +39,6 @@ class Role:
             new_map[1] -= 1
 
         return self.db.table('role').where('uid = %s' % uid).update(map=','.join(map(str, new_map)))
+
+    def accept_task(self, uid):
+        return self.db.table('role').where("uid = %s" % uid).update(task_state=1)

@@ -1,22 +1,17 @@
 // noinspection ES6CheckImport
 
 import React, {useState} from "react";
-import {Button, notification, Input} from 'antd';
+import {Button, Input} from 'antd';
 import axios from "axios";
 import {SERVICE} from "../config";
 import cookie from "react-cookies";
 import Title from "../component/title";
 import {useNavigate} from "react-router-dom";
+import openNotification from "../component/notification"
 
 const form = {
     marginTop: '80px', textAlign: 'center',
 }
-
-const openNotification = (message, description) => {
-    notification.open({
-        message: message, description: description, duration: 2
-    });
-};
 
 
 export default () => {
@@ -24,6 +19,7 @@ export default () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const token = () => {
+
         if (email.trim() === '' || password.trim() === '') return openNotification('提示：', '请输入您的邮箱和密码！');
         axios.post(SERVICE + 'token', {email: email, password: password}).then((res) => {
             openNotification('登录：', res.data['msg'])

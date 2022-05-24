@@ -1,4 +1,5 @@
 import json
+import copy
 
 
 class JsonSelect:
@@ -7,19 +8,19 @@ class JsonSelect:
         self.data = json.load(f)
 
     def get_dokemon(self, did: str) -> dict:
-        return self.data.get(did)
+        return copy.deepcopy(self.data.get(did))
 
     def get_map(self, mid: str) -> dict:
-        return self.data.get(mid)
+        return copy.deepcopy(self.data.get(mid))
 
     def get_npc(self, name: str) -> dict:
-        return self.data[name]
+        return copy.deepcopy(self.data[name])
 
     def get_task(self, tid: str) -> dict:
-        return self.data[tid]
+        return copy.deepcopy(self.data[tid])
 
     def get_item(self, iid: str) -> dict:
-        return self.data[iid]
+        return copy.deepcopy(self.data[iid])
 
     def get_store(self) -> dict:
-        return self.data
+        return copy.deepcopy(self.data)

@@ -8,6 +8,7 @@ import cookie from "react-cookies";
 import {Button} from "antd";
 import Loading from "../component/loading";
 import {useNavigate} from "react-router-dom";
+import openNotification from "../component/notification"
 
 export default () => {
     const navigate = useNavigate()
@@ -32,6 +33,15 @@ export default () => {
             setLoading(false)
         })
     }, [])
+    const accept = () => {
+        axios.get(SERVICE + 'role/accept_task?token=' + cookie.load('token')).then(r => {
+            openNotification('任务提示：', r['data']['msg'])
+            setLoading(true)
+            init().then(() => {
+                setLoading(false)
+            })
+        })
+    }
     return (
         <>
             <Loading loading={loading}></Loading>
@@ -44,7 +54,8 @@ export default () => {
             </div>
             <h3 className={'mainTop'}>{npc.depiction}</h3>
             <div style={{position: 'absolute', bottom: '20px', right: 0, left: 0}}>
-                {npc['isTask'] === 1 ? <Button><span role={'img'} aria-label={'happy'}>😊</span>接受任务</Button> : ''}
+                {npc['isTask'] === 1 ?
+                    <Button onClick={accept}><span role={'img'} aria-label={'happy'}>😊</span>接受任务</Button> : ''}
                 {npc['isTask'] === 2 ? <Button><span role={'img'} aria-label={'happy'}>😊</span>完成任务</Button> : ''}
             </div>
         </>
