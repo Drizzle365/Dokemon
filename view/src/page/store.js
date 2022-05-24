@@ -1,35 +1,38 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Avatar, List} from 'antd';
+import axios from "axios";
+import {SERVICE} from "../config";
+import Loading from "../component/loading";
 
 export default () => {
-    const data = [
-        {
-            title: 'Ant Design Title 1',
-        },
-        {
-            title: 'Ant Design Title 2',
-        },
-        {
-            title: 'Ant Design Title 3',
-        },
-        {
-            title: 'Ant Design Title 4',
-        },
-    ];
+    const [loading, setLoading] = useState(true)
+    const [store, setStore] = useState([{'name': '', 'depiction': ''}])
+
+    async function init() {
+        let res = (await axios.get(SERVICE + 'query/store')).data
+        setStore(Object.values(res))
+    }
+
+    useEffect(() => {
+        init().then(() => {
+            setLoading(false)
+        })
+    }, [])
     return (
         <>
-            <List
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={(item) => (
-                    <List.Item>
-                        <List.Item.Meta
-                            avatar={<Avatar src="https://joeschmoe.io/api/v1/random"/>}
-                            title={<a href="https://ant.design">{item.title}</a>}
-                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                        />
-                    </List.Item>
-                )}
+            <Loading loading={loading}></Loading>
+            <List style={{textAlign: 'left'}}
+                  itemLayout="horizontal"
+                  dataSource={store}
+                  renderItem={(item) => (
+                      <List.Item actions={[<a key="see">查看详情</a>, <a key="buy">购买</a>]}>
+                          <List.Item.Meta
+                              avatar={<Avatar src="https://joeschmoe.io/api/v1/random"/>}
+                              title={<span>{item['name']}</span>}
+                              description="一件商品"
+                          />
+                      </List.Item>
+                  )}
             />
         </>
     )
