@@ -123,7 +123,7 @@ def items_excel_json():
             'function': function[i].value
         }
     npc_data = json.dumps(items_json, ensure_ascii=False)
-    with open('../model/json/item.json', 'w', encoding='utf-8') as f:
+    with open('../model/json/items.json', 'w', encoding='utf-8') as f:
         f.write(npc_data)
         print('物品数据转化完成！')
 

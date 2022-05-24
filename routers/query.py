@@ -11,6 +11,8 @@ js_map = JsonSelect('map')
 js_npc = JsonSelect('npc')
 js_dokemon = JsonSelect('dokemon')
 js_task = JsonSelect('task')
+js_item = JsonSelect('items')
+js_store = JsonSelect('store')
 
 
 @router.get('/map')
@@ -65,3 +67,13 @@ def get_task(tid: str):
 @router.get('/dokemon')
 def get_dokemon(did: str):
     return js_dokemon.get_dokemon(did)
+
+
+@router.get('/items')
+def get_task(iid: str):
+    return js_item.get_item(iid)
+
+
+@router.get('/store')
+def get_task():
+    return js_store.get_store()
