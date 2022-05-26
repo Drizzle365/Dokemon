@@ -19,8 +19,9 @@ export default () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const token = () => {
-
         if (email.trim() === '' || password.trim() === '') return openNotification('提示：', '请输入您的邮箱和密码！');
+        if (!(/^([a-zA-Z\d_-])+@([a-zA-Z\d_-])+(.[a-zA-Z\d_-])+/).test(email))
+            return openNotification('提示：', '邮箱格式错误!')
         axios.post(SERVICE + 'token', {email: email, password: password}).then((res) => {
             openNotification('登录：', res.data['msg'])
             if (res.data.code === 0) {
