@@ -27,8 +27,9 @@ export default () => {
         <div>
             <Button onClick={() => {
                 navigate('/game/map')
-            }}>返回地图</Button>
-            <Button>我的豆可梦</Button>
+            }}>地图</Button>
+            <Button>角色</Button>
+            <Button>豆可梦</Button>
         </div>
 
         <div className={'bottom_bar'}>
@@ -44,8 +45,10 @@ export default () => {
                 </span>
                 <span className={'bottomBr'}>
                 <img className={'buttonImg'} src={SERVICE_IMG + 'ui/jj.png'} alt={'竞技'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/rw.png'} alt={'任务'}/>
-                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/sd.png'} alt={'商店'}/>
+                <img onClick={() => {
+                    navigate('/game/task')
+                }} className={'buttonImg'} src={SERVICE_IMG + 'ui/rw.png'} alt={'任务'}/>
+                <img className={'buttonImg'} src={SERVICE_IMG + 'ui/sd.png'} alt={'商城'}/>
                 <img onClick={() => {
                     navigate('/game/announcement')
                 }} className={'buttonImg'} src={SERVICE_IMG + 'ui/gg.png'} alt={'公告'}/>

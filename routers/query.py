@@ -75,5 +75,8 @@ def get_task(iid: str):
 
 
 @router.get('/store')
-def get_task():
-    return js_store.get_store()
+def get_task(user=Depends(get_user)):
+    uid = user['uid']
+    role_data = role.get(uid)
+    store_data = js_store.get_store()
+    return {'store': store_data, 'role': role_data}

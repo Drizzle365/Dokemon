@@ -9,9 +9,9 @@ import Map from "./page/map";
 import Npc from "./page/npc";
 import Announcement from "./page/announcement";
 import Store from "./page/store";
+import Task from "./page/task";
 
 const Router = () => {
-
     return (<Routes>
         <Route path="/" element={<Index/>}/>
         <Route path="/create" element={<Create/>}/>
@@ -20,6 +20,8 @@ const Router = () => {
             <Route path="npc/:npcName" element={<Npc/>}></Route>
             <Route path="announcement" element={<Announcement/>}></Route>
             <Route path="store" element={<Store/>}></Route>
+            <Route path="task" element={<Task/>}></Route>
+
         </Route>
     </Routes>)
 }

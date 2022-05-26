@@ -3,15 +3,18 @@ import {Avatar, List, Button, Modal, InputNumber} from 'antd';
 import axios from "axios";
 import {SERVICE} from "../config";
 import Loading from "../component/loading";
+import cookie from "react-cookies";
 
 export default () => {
     const [loading, setLoading] = useState(true)
     const [store, setStore] = useState([{'name': '', 'depiction': ''}])
+    const [role, setRole] = useState({'coin': ''})
 
     async function init() {
-        let res = (await axios.get(SERVICE + 'query/store')).data
+        let res = (await axios.get(SERVICE + 'query/store?token=' + cookie.load('token'))).data
         console.log(res)
-        setStore(Object.values(res))
+        setStore(Object.values(res['store']))
+        setRole({...res['role']})
     }
 
     useEffect(() => {
@@ -48,6 +51,8 @@ export default () => {
     return (
         <>
             <Loading loading={loading}></Loading>
+            <div className={'mainTop'}>小镇商店</div>
+            <div>硬币：<span style={{color: 'red'}}>{role['coin']}</span></div>
             <List style={{textAlign: 'left', padding: '10px 20px'}}
                   itemLayout="horizontal"
                   dataSource={store}

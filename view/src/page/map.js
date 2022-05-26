@@ -40,7 +40,7 @@ export default () => {
         <div>
             {mapRes.npc_list ? mapRes.npc_list.map((item, index) => (<span key={index} onClick={() => {
                 navigate('/game/npc/' + item)
-            }} className={'link'}>{item === mapRes['task']['npc'] ?
+            }} className={'link'}>{item === mapRes['task']['npc'] && mapRes['role']['task_state'] === 0 ?
                 <img style={{height: '25px', margin: '2px'}} alt={'!'}
                      src={SERVICE_IMG + 'ui/!.png'}/> : ""}
                 {item}</span>)) : '加载中'}
