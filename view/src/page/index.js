@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import openNotification from "../component/notification"
 
 const form = {
-    marginTop: '80px', textAlign: 'center',
+    marginTop: '20px', textAlign: 'center',
 }
 
 
@@ -58,6 +58,8 @@ export default () => {
             <Button style={{marginTop: '10px'}} onClick={token}>登录
             </Button>
             <h6 style={{marginTop: '5px'}}>提示：首次登录会自动注册账号</h6>
+
         </div>
-    </>)
+    </>
+)
 }

@@ -50,7 +50,7 @@ export default () => {
                 console.log(item)
             }} className={'link'} style={{color: '#32327a'}}>
                 <img style={{height: '25px', margin: '2px'}} alt={'!'}
-                     src={SERVICE_IMG + 'pokemon/front/' + item.id + '.gif'}/>
+                     src={SERVICE_IMG + 'dokemon/front/' + item.id + '.gif'}/>
                 {item.name}( lv.{item['lv']} )</span>)) : '加载中'}
         </div>
         <div style={{marginTop: '20px', backgroundColor: 'salmon', padding: '12px', borderRadius: '0 0 20px 20px'}}>

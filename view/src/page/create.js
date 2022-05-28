@@ -56,21 +56,21 @@ export default () => {
         <Title></Title>
         <div className={'create'}>
             <Steps current={step}>
-                <Step title="训练师信息" description="完善你的训练师信息"/>
-                <Step title="选择豆可梦" description="选择你的第一个伙伴吧"/>
-                <Step title="开始游戏" description="进入豆可梦的世界吧！"/>
+                <Step title="道友信息" description="完善你的角色信息"/>
+                <Step title="选择豆可梦" description="你的第一个伙伴"/>
+                <Step title="开始游戏" description="进入修仙的世界吧！"/>
             </Steps>
             <Tabs defaultActiveKey='0' activeKey={step.toString()}>
                 <TabPane key="0">
                     <Input showCount maxLength={12} onChange={(e) => {
                         setName(e.target.value)
-                    }} placeholder="训练师姓名"></Input>
+                    }} placeholder="起一个响当当的名字"></Input>
                     <div style={{marginTop: '20px'}}>
-                        <img src={SERVICE_IMG + 'boy.png'} width={'100px'} height={'240px'} alt={'男孩'}
+                        <img src={SERVICE_IMG + 'boy.png'} width={'161px'} height={'200px'} alt={'男孩'}
                              onClick={() => {
                                  setSex('男')
                              }}></img>
-                        <img src={SERVICE_IMG + 'girl.png'} width={'100px'} height={'240px'} alt={'女孩'}
+                        <img src={SERVICE_IMG + 'girl.png'} width={'129px'} height={'200px'} alt={'女孩'}
                              onClick={() => {
                                  setSex('女')
                              }}></img>
@@ -78,23 +78,23 @@ export default () => {
                     <Radio.Group value={sex}>
                         <Radio value={'男'} style={{margin: '20px'}} onClick={() => {
                             setSex('男')
-                        }}>Boy</Radio>
+                        }}>须眉</Radio>
                         <Radio value={'女'} style={{margin: '20px'}} onClick={() => {
                             setSex('女')
-                        }}>Girl</Radio>
+                        }}>巾帼</Radio>
                     </Radio.Group>
                 </TabPane>
                 <TabPane key="1">
                     <div style={{marginTop: '20px'}}>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/1.gif'} alt={'妙蛙种子'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'dokemon/front/1.gif'} alt={'妙蛙种子'}
                              onClick={() => {
                                  setDokemon(1)
                              }}></img>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/4.gif'} alt={'小火龙'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'dokemon/front/4.gif'} alt={'小火龙'}
                              onClick={() => {
                                  setDokemon(4)
                              }}></img>
-                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'pokemon/front/7.gif'} alt={'杰尼龟'}
+                        <img style={{margin: '40px'}} src={SERVICE_IMG + 'dokemon/front/7.gif'} alt={'杰尼龟'}
                              onClick={() => {
                                  setDokemon(7)
                              }}></img>
@@ -114,11 +114,11 @@ export default () => {
                     </Radio.Group>
                 </TabPane>
                 <TabPane key="2">
-                    <img src={SERVICE_IMG + 'npc/大木博士.png'} alt={'大木博士'} width={'100px'}/>
-                    <Card title="年轻的训练师，你好：" bordered={false} style={{textAlign: 'left'}}>
-                        我是宝可梦图鉴的创作者之一，同时也将会在豆可梦的世界指导训练师们变成世界一流的豆可梦训练家！
-                        你已经选择了你的第一位豆可梦伙伴：<span style={{color: 'red'}}>{DOKEMON[dokemon]}</span>，
-                        他将会在接下来很长一段时间内跟随着你，直到你变得足够强大，如果你已经准备好了，等会去豆可梦研究所找我叭！
+                    <img src={SERVICE_IMG + 'npc/龙傲天.png'} alt={'龙傲天'} width={'250px'}/>
+                    <Card title="少侠，你好：" bordered={false} style={{textAlign: 'left'}}>
+                        我是龙傲天，修为已达金丹境界，我背后的苍龙是陪我征战人间的豆可梦伙伴，想必 你已经选择了你的第一位豆可梦伙伴：<span
+                        style={{color: 'red'}}>{DOKEMON[dokemon]}</span>，
+                        他将会在接下来很长一段时间内跟随着你，直到你变得足够强大，如果你已经准备好了，一会去苍龙村找我吧！
                     </Card>
                 </TabPane>
             </Tabs>
