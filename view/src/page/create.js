@@ -34,7 +34,7 @@ export default () => {
     const changeStep = (val) => {
         const temp = step + val
         if (name.trim() === '') {
-            return openNotification('警告:', '亲爱的召唤师，我还不知道你的名字呢！')
+            return openNotification('警告:', '少侠，我还不知道你的名字呢！')
         }
         if (temp < 0) {
             return 0
@@ -48,7 +48,7 @@ export default () => {
         axios.post(SERVICE + 'role/create?token=' + cookie.load('token'), {
             name: name, sex: sex, dokemon: dokemon
         }).then(() => {
-            openNotification('通知：', '你的档案已经录入在豆可梦训练师协会啦，开始您的冒险之旅吧！')
+            openNotification('通知：', '欢迎少侠来到豆可梦的修仙世界！')
             navigate('/game/map')
         })
     }
